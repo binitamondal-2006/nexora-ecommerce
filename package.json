@@ -1,0 +1,39 @@
+{
+  "name": "nexora-megastore",
+  "version": "1.0.0",
+  "description": "Nexora — India's Premier Online Mega Marketplace with 1,000+ Products, AI Shopping Copilot, Multi-payment (UPI/COD/Cards), Deals & Instant Order Processing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node -e \"require('./db').initDB()\""
+  },
+  "keywords": [
+    "ecommerce",
+    "express",
+    "nodejs",
+    "amazon-flipkart-clone",
+    "upi-payment",
+    "cod",
+    "shopping-cart",
+    "full-stack",
+    "render",
+    "ai-assistant"
+  ],
+  "author": "Nexora Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

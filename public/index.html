@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora — India's Premier Online Mega Marketplace | 1,000+ Products</title>
+  <meta name="description" content="Shop 1,000+ smartphones, electronics, fashion, home appliances and groceries with instant UPI, COD, festive discounts, and AI Shopping Assistant on Nexora.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container bar-content">
+      <div class="bar-left">
+        <span class="badge-flash">⚡ FESTIVE MEGA SALE</span>
+        <span>Get Flat <strong>₹500 OFF</strong> with coupon code <strong class="coupon-tag">NEXORA50</strong></span>
+      </div>
+      <div class="bar-right">
+        <span>🚚 Free Express Delivery on ₹499+</span>
+        <span class="divider">|</span>
+        <span>💵 Cash on Delivery & UPI Accepted</span>
+        <span class="divider">|</span>
+        <a href="#help" id="btnTopSupport">24x7 Helpdesk</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="#" class="logo" id="brandLogo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="url(#logo-grad)"/>
+            <path d="M10 13H26L24 27H12L10 13Z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 13V10C14 7.79086 15.7909 6 18 6C20.2091 6 22 7.79086 22 10V13" stroke="#ffffff" stroke-width="2"/>
+            <path d="M19 16L15 21H20L17 25" stroke="#FFE600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2874F0"/>
+                <stop offset="1" stop-color="#0E4BB5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">Nexora<span class="brand-dot">.</span></span>
+          <span class="brand-tagline">Mega Store</span>
+        </div>
+      </a>
+
+      <!-- Delivery Pin Location -->
+      <div class="location-picker" id="btnLocationPicker" title="Change delivery location">
+        <span class="loc-icon">📍</span>
+        <div class="loc-details">
+          <span class="loc-label">Deliver to</span>
+          <span class="loc-value" id="currentLocationText">Bengaluru 560038</span>
+        </div>
+      </div>
+
+      <!-- Global Search Bar -->
+      <div class="search-section">
+        <div class="search-category-select">
+          <select id="searchCategorySelect">
+            <option value="All">All Categories</option>
+            <option value="Mobiles & Tablets">Mobiles</option>
+            <option value="Electronics & Computers">Electronics</option>
+            <option value="Fashion & Apparel">Fashion</option>
+            <option value="Home & Kitchen">Home</option>
+            <option value="Beauty & Personal Care">Beauty</option>
+            <option value="Appliances & TV">Appliances</option>
+            <option value="Sports, Fitness & Outdoors">Sports</option>
+            <option value="Groceries & Essentials">Groceries</option>
+          </select>
+        </div>
+        <div class="search-input-wrap">
+          <input type="text" id="globalSearchInput" placeholder="Search 1,000+ smartphones, laptops, fashion, grocery..." autocomplete="off">
+          <button class="clear-search-btn" id="btnClearSearch" style="display:none;">✕</button>
+        </div>
+        <button class="search-btn" id="btnGlobalSearch" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <!-- Search suggestions dropdown -->
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+
+      <!-- Header Navigation Actions -->
+      <div class="header-actions">
+        <!-- Auth / User Dropdown -->
+        <div class="action-item user-menu-container" id="userMenuContainer">
+          <div class="user-trigger" id="btnUserMenu">
+            <span class="action-icon">👤</span>
+            <div class="action-text">
+              <span class="sub-text" id="userGreetingText">Hello, Sign In</span>
+              <span class="main-text" id="userNameText">My Account ▾</span>
+            </div>
+          </div>
+          <div class="user-dropdown" id="userDropdown">
+            <!-- Dynamic auth content -->
+          </div>
+        </div>
+
+        <!-- Orders -->
+        <button class="action-item order-btn" id="btnMyOrders">
+          <span class="action-icon">📦</span>
+          <div class="action-text">
+            <span class="sub-text">Returns</span>
+            <span class="main-text">& Orders</span>
+          </div>
+        </button>
+
+        <!-- Cart -->
+        <button class="action-item cart-btn" id="btnOpenCart" aria-label="Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <span class="action-icon">🛒</span>
+            <span class="cart-badge" id="cartBadgeCount">0</span>
+          </div>
+          <div class="action-text">
+            <span class="sub-text">Total</span>
+            <span class="main-text" id="headerCartTotal">₹0</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Category Navigation Strip -->
+  <nav class="category-nav">
+    <div class="container cat-nav-container">
+      <button class="cat-pill all-cat-pill" id="btnToggleAllCategories">
+        <span class="hamburger">☰</span> All Categories
+      </button>
+      <div class="cat-scroll-container">
+        <button class="cat-link active" data-category="All">Home</button>
+        <button class="cat-link" data-category="Mobiles & Tablets">📱 Mobiles</button>
+        <button class="cat-link" data-category="Electronics & Computers">💻 Electronics</button>
+        <button class="cat-link" data-category="Fashion & Apparel">👗 Fashion</button>
+        <button class="cat-link" data-category="Home & Kitchen">🏠 Home & Kitchen</button>
+        <button class="cat-link" data-category="Beauty & Personal Care">✨ Beauty</button>
+        <button class="cat-link" data-category="Appliances & TV">📺 Appliances</button>
+        <button class="cat-link" data-category="Sports, Fitness & Outdoors">🚴 Sports</button>
+        <button class="cat-link" data-category="Groceries & Essentials">🥑 Groceries</button>
+        <button class="cat-link deals-link" id="navDealsBtn">🔥 Deals of the Day</button>
+        <button class="cat-link ai-nav-link" id="navAiBtn">🤖 AI Copilot</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main App Layout Container -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Hero Carousel Banner -->
+    <section class="hero-carousel-section" id="heroSection">
+      <div class="container">
+        <div class="carousel-container">
+          <div class="carousel-slide active" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+            <div class="slide-content">
+              <span class="slide-pill">MEGA DIWALI BONANZA</span>
+              <h2>The Great Festive Electronics Festival</h2>
+              <p>Up to <strong>75% OFF</strong> on Flagship 5G Smartphones, Laptops & Premium Audio. Instant ₹1,500 Bank Discounts.</p>
+              <div class="slide-actions">
+                <button class="btn btn-primary" onclick="app.filterByCategory('Mobiles & Tablets')">Shop Mobiles</button>
+                <button class="btn btn-outline-light" onclick="app.filterByCategory('Electronics & Computers')">Explore Laptops</button>
+              </div>
+            </div>
+            <div class="slide-badge-circle">
+              <span class="circle-val">75%</span>
+              <span class="circle-lbl">OFF</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #d31027 0%, #ea384d 100%);">
+            <div class="slide-content">
+              <span class="slide-pill">TOP FASHION BRANDS</span>
+              <h2>Sneakers, Hoodies & Designer Wear</h2>
+              <p>Nike, Adidas, Levi's & Puma starting from ₹499. Buy 2 Get 1 Free on all casual styles.</p>
+              <div class="slide-actions">
+                <button class="btn btn-primary" onclick="app.filterByCategory('Fashion & Apparel')">Shop Fashion Deals</button>
+              </div>
+            </div>
+            <div class="slide-badge-circle">
+              <span class="circle-val">60%</span>
+              <span class="circle-lbl">OFF</span>
+            </div>
+          </div>
+
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #093028 0%, #237a57 100%);">
+            <div class="slide-content">
+              <span class="slide-pill">HOME & SMART LIVING</span>
+              <h2>4K Google TVs & Smart Inverter ACs</h2>
+              <p>Upgrade your home with 5-star energy appliances. Free Demo, Express Installation & No-Cost EMI.</p>
+              <div class="slide-actions">
+                <button class="btn btn-primary" onclick="app.filterByCategory('Appliances & TV')">Upgrade Appliances</button>
+              </div>
+            </div>
+            <div class="slide-badge-circle">
+              <span class="circle-val">50%</span>
+              <span class="circle-lbl">OFF</span>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous Slide">‹</button>
+          <button class="carousel-btn next" id="carouselNext" aria-label="Next Slide">›</button>
+          <div class="carousel-indicators" id="carouselDots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="t-icon">🚚</span>
+          <div>
+            <h4>Free Express Shipping</h4>
+            <p>On all orders above ₹499</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="t-icon">🔒</span>
+          <div>
+            <h4>100% Genuine Guarantee</h4>
+            <p>Direct from verified manufacturers</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="t-icon">⚡</span>
+          <div>
+            <h4>Instant UPI & COD</h4>
+            <p>GPay, PhonePe, Paytm, Cash on Delivery</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="t-icon">🔄</span>
+          <div>
+            <h4>7-Day Easy Returns</h4>
+            <p>Hassle-free replacement at doorstep</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="t-icon">🤖</span>
+          <div>
+            <h4>Nexora AI Shopping Copilot</h4>
+            <p>Smart recommendations in real time</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank Offers Strip -->
+    <section class="bank-offers-section">
+      <div class="container">
+        <div class="bank-offers-card">
+          <span class="offer-title">💳 PARTNER BANK OFFERS:</span>
+          <div class="offer-ticker">
+            <span class="offer-chip"><strong>HDFC Bank:</strong> Flat 10% Instant Discount up to ₹1,500 on Credit Cards</span>
+            <span class="offer-chip"><strong>SBI Cards:</strong> 5% Unlimited Cashback on all electronics</span>
+            <span class="offer-chip"><strong>UPI Payments:</strong> Extra ₹100 Cashback with code <strong>WELCOME100</strong></span>
+            <span class="offer-chip"><strong>No Cost EMI:</strong> Available on 6, 9 & 12 month tenures</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deals of the Day Section -->
+    <section class="deals-section" id="dealsSection">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="badge-fire">🔥 LIGHTNING DEALS</span>
+            <h2>Deals of the Day</h2>
+            <div class="deal-countdown">
+              <span>Ends in:</span>
+              <div class="timer-box">
+                <span id="timerHours">05</span>:<span id="timerMinutes">42</span>:<span id="timerSeconds">19</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-link" id="btnViewAllDeals">View All Deals →</button>
+        </div>
+
+        <div class="deals-carousel" id="dealsCarousel">
+          <!-- Dynamic flash deals rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Catalog View: Sidebar Filters + Products Grid -->
+    <section class="catalog-section" id="catalogSection">
+      <div class="container catalog-layout">
+        
+        <!-- Left Sidebar Filters -->
+        <aside class="sidebar-filters" id="sidebarFilters">
+          <div class="filter-header">
+            <h3>Filters</h3>
+            <button class="btn-clear-filters" id="btnClearFilters">Clear All</button>
+          </div>
+
+          <!-- Category Filter Group -->
+          <div class="filter-group">
+            <h4 class="filter-title">Category</h4>
+            <div class="filter-options-list" id="categoryFilterList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Price Range Filter Group -->
+          <div class="filter-group">
+            <h4 class="filter-title">Price Range</h4>
+            <div class="price-slider-wrap">
+              <input type="range" id="priceRangeSlider" min="100" max="150000" step="500" value="150000">
+              <div class="price-inputs">
+                <span>Up to: <strong id="priceRangeLabel">₹1,50,000</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brands Filter Group -->
+          <div class="filter-group">
+            <h4 class="filter-title">Popular Brands</h4>
+            <div class="filter-options-list scrollable-filter" id="brandFilterList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Customer Ratings Filter Group -->
+          <div class="filter-group">
+            <h4 class="filter-title">Customer Ratings</h4>
+            <div class="rating-filter-options">
+              <label class="filter-radio-label">
+                <input type="radio" name="ratingFilter" value="4" onchange="app.filterByRating(4)">
+                <span>4★ & above</span>
+              </label>
+              <label class="filter-radio-label">
+                <input type="radio" name="ratingFilter" value="3.5" onchange="app.filterByRating(3.5)">
+                <span>3.5★ & above</span>
+              </label>
+              <label class="filter-radio-label">
+                <input type="radio" name="ratingFilter" value="0" checked onchange="app.filterByRating(0)">
+                <span>All Ratings</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Discount Filter Group -->
+          <div class="filter-group">
+            <h4 class="filter-title">Discount</h4>
+            <div class="discount-filter-options">
+              <label class="filter-radio-label">
+                <input type="radio" name="discountFilter" value="50" onchange="app.filterByDiscount(50)">
+                <span>50% or more</span>
+              </label>
+              <label class="filter-radio-label">
+                <input type="radio" name="discountFilter" value="30" onchange="app.filterByDiscount(30)">
+                <span>30% or more</span>
+              </label>
+              <label class="filter-radio-label">
+                <input type="radio" name="discountFilter" value="15" onchange="app.filterByDiscount(15)">
+                <span>15% or more</span>
+              </label>
+              <label class="filter-radio-label">
+                <input type="radio" name="discountFilter" value="0" checked onchange="app.filterByDiscount(0)">
+                <span>All Discounts</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Products Content Area -->
+        <div class="catalog-content">
+          <!-- Active Filter Chips & Sorting Toolbar -->
+          <div class="catalog-toolbar">
+            <div class="toolbar-left">
+              <span class="results-count" id="catalogResultsCount">Loading 1,000+ products...</span>
+              <div class="active-chips" id="activeFilterChips"></div>
+            </div>
+            <div class="toolbar-right">
+              <label for="sortBySelect" class="sort-label">Sort By:</label>
+              <select id="sortBySelect" class="sort-select">
+                <option value="recommended">Featured & Recommended</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="discount">Biggest Discount %</option>
+                <option value="newest">Newest Arrivals</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="products-grid" id="productsGrid">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="pagination-wrapper" id="paginationWrapper">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Product Details Modal -->
+  <div class="modal-backdrop" id="productModal" style="display:none;">
+    <div class="modal-dialog modal-lg product-modal-dialog">
+      <button class="modal-close-btn" onclick="app.closeModal('productModal')">✕</button>
+      <div class="product-modal-body" id="productModalBody">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop" style="display:none;">
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
+        <h3>🛒 My Shopping Cart (<span id="cartDrawerCount">0</span>)</h3>
+        <button class="drawer-close-btn" onclick="app.toggleCartDrawer(false)">✕</button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent">
+        <!-- Cart items rendered here -->
+      </div>
+
+      <div class="cart-drawer-footer" id="cartDrawerFooter">
+        <!-- Pricing breakdown & checkout button -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Step Checkout Modal -->
+  <div class="modal-backdrop" id="checkoutModal" style="display:none;">
+    <div class="modal-dialog modal-md checkout-modal-dialog">
+      <button class="modal-close-btn" onclick="app.closeModal('checkoutModal')">✕</button>
+      
+      <div class="checkout-header">
+        <h2>Secure Checkout</h2>
+        <div class="checkout-steps">
+          <div class="step-indicator active" id="step1Indicator">1. Address</div>
+          <div class="step-line"></div>
+          <div class="step-indicator" id="step2Indicator">2. Payment</div>
+          <div class="step-line"></div>
+          <div class="step-indicator" id="step3Indicator">3. Review</div>
+        </div>
+      </div>
+
+      <div class="checkout-body" id="checkoutModalBody">
+        <!-- Step 1: Address, Step 2: Payment, Step 3: Review -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Success & Tracking Modal -->
+  <div class="modal-backdrop" id="orderSuccessModal" style="display:none;">
+    <div class="modal-dialog modal-md order-success-dialog">
+      <div class="success-confetti-header">
+        <div class="success-icon-pop">🎉</div>
+        <h2>Order Confirmed!</h2>
+        <p class="success-sub">Thank you for shopping with Nexora. Your order has been placed successfully!</p>
+      </div>
+      <div class="order-success-body" id="orderSuccessBody">
+        <!-- Rendered with tracking progress, order details, and invoice download -->
+      </div>
+    </div>
+  </div>
+
+  <!-- My Orders Modal -->
+  <div class="modal-backdrop" id="myOrdersModal" style="display:none;">
+    <div class="modal-dialog modal-lg orders-modal-dialog">
+      <div class="modal-header">
+        <h2>📦 My Orders & Tracking</h2>
+        <button class="modal-close-btn" onclick="app.closeModal('myOrdersModal')">✕</button>
+      </div>
+      <div class="modal-body" id="myOrdersModalBody">
+        <!-- List of past orders with tracking -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth / Login / Register Modal -->
+  <div class="modal-backdrop" id="authModal" style="display:none;">
+    <div class="modal-dialog modal-sm auth-modal-dialog">
+      <button class="modal-close-btn" onclick="app.closeModal('authModal')">✕</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin" onclick="app.switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" id="tabRegister" onclick="app.switchAuthTab('register')">Create Account</button>
+      </div>
+
+      <!-- Quick 1-Click Demo Logins -->
+      <div class="demo-login-box">
+        <span class="demo-lbl">⚡ Fast 1-Click Demo Login:</span>
+        <div class="demo-buttons">
+          <button class="btn btn-demo" onclick="app.loginDemo('aarav@nexora.in')">Aarav (Regular Shopper)</button>
+          <button class="btn btn-demo" onclick="app.loginDemo('priya@nexora.in')">Priya (VIP Gold)</button>
+        </div>
+      </div>
+
+      <div class="auth-form-wrap" id="authFormWrap">
+        <!-- Form rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- PIN Code Location Modal -->
+  <div class="modal-backdrop" id="pincodeModal" style="display:none;">
+    <div class="modal-dialog modal-sm">
+      <button class="modal-close-btn" onclick="app.closeModal('pincodeModal')">✕</button>
+      <h3>Choose Delivery Location</h3>
+      <p class="modal-desc">Enter your 6-digit PIN code to check delivery availability and speed.</p>
+      <form id="pincodeForm" onsubmit="app.handlePincodeSubmit(event)">
+        <div class="form-group">
+          <input type="text" id="inputPincode" class="form-control" placeholder="e.g. 560038, 400001, 110001" maxlength="6" pattern="[0-9]{6}" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Apply Location</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Nexora AI Shopping Copilot Widget -->
+  <div class="ai-widget-container">
+    <button class="ai-floating-btn" id="btnToggleAiChat" title="Chat with Nexora AI Copilot">
+      <span class="ai-pulse-ring"></span>
+      <span class="ai-btn-icon">🤖</span>
+      <span class="ai-btn-text">Nexora AI</span>
+    </button>
+
+    <div class="ai-chat-window" id="aiChatWindow" style="display:none;">
+      <div class="ai-chat-header">
+        <div class="ai-header-info">
+          <span class="ai-avatar">🤖</span>
+          <div>
+            <h4>Nexora AI Shopping Copilot</h4>
+            <span class="ai-status">● Online • Instant recommendations</span>
+          </div>
+        </div>
+        <button class="ai-close-btn" id="btnCloseAiChat">✕</button>
+      </div>
+
+      <div class="ai-quick-prompts">
+        <button class="prompt-chip" onclick="app.sendAiPrompt('Recommend top 5G smartphones under ₹25,000')">📱 5G phones under ₹25k</button>
+        <button class="prompt-chip" onclick="app.sendAiPrompt('Best noise cancelling headphones for work and travel')">🎧 Noise cancelling headphones</button>
+        <button class="prompt-chip" onclick="app.sendAiPrompt('Show top kitchen appliances with festive discounts')">🍳 Kitchen appliances</button>
+        <button class="prompt-chip" onclick="app.sendAiPrompt('Best gifts under ₹1,500')">🎁 Gifts under ₹1500</button>
+      </div>
+
+      <div class="ai-messages-area" id="aiMessagesArea">
+        <div class="ai-msg bot">
+          <div class="msg-bubble">
+            Hello! I am your <strong>Nexora AI Shopping Copilot</strong>. Tell me what you're looking for, your budget, or specific requirements, and I'll find the best verified deals across our 1,000+ catalog!
+          </div>
+        </div>
+      </div>
+
+      <form class="ai-chat-input-bar" id="aiChatForm" onsubmit="app.handleAiSubmit(event)">
+        <input type="text" id="aiInputText" placeholder="Ask AI: 'Laptop under 50k for coding'..." autocomplete="off">
+        <button type="submit" class="ai-send-btn" aria-label="Send">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-top-strip">
+      <div class="container back-to-top-wrap">
+        <button class="btn-back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to top ↑</button>
+      </div>
+    </div>
+    <div class="container footer-content-grid">
+      <div class="footer-col">
+        <h4>About Nexora</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers & Culture</a></li>
+          <li><a href="#">Nexora Stories</a></li>
+          <li><a href="#">Press & Releases</a></li>
+          <li><a href="#">Nexora Wholesale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Payments & Security</a></li>
+          <li><a href="#">Shipping & Tracking</a></li>
+          <li><a href="#">Cancellations & Returns</a></li>
+          <li><a href="#">FAQ & Support Desk</a></li>
+          <li><a href="#">Report an Infringement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Consumer Policy</h4>
+        <ul>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Terms Of Use</a></li>
+          <li><a href="#">Security & Privacy</a></li>
+          <li><a href="#">Grievance Redressal</a></li>
+          <li><a href="#">EPR Compliance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Registered Office</h4>
+        <p class="office-address">
+          Nexora Mega Marketplace India Pvt. Ltd.<br>
+          Buildings Alyssa, Begonia & Clove Embassy Tech Village,<br>
+          Outer Ring Road, Devarabeesanahalli Village,<br>
+          Bengaluru, 560103, Karnataka, India<br>
+          CIN: U51109KA2026PTC066107
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-strip">
+      <div class="container footer-bottom-flex">
+        <div class="payment-methods-strip">
+          <span>Supported Payment Methods:</span>
+          <span class="pay-tag">UPI (GPay / PhonePe / Paytm / BHIM)</span>
+          <span class="pay-tag">Cash on Delivery (COD)</span>
+          <span class="pay-tag">RuPay / Visa / Mastercard</span>
+          <span class="pay-tag">Net Banking</span>
+        </div>
+        <p class="copyright-text">© 2026 Nexora Mega Store Inc. All Rights Reserved. Designed for high-speed, zero-lag performance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

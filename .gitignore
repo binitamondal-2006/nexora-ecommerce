@@ -1,0 +1,7 @@
+node_modules/
+.env
+data/nexora.db
+data/store.json
+.DS_Store
+*.log
+dist/
